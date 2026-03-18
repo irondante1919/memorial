@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memorial | Luis Ariel</title>
+<meta name="description" content="Memorial digital de Luis Ariel">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="page">
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Luis Ariel</h1>
+      <div class="dates">19 de diciembre de 1988 – 18 de marzo de 2026</div>
+      <h2>Por siempre en nuestros corazones</h2>
+      <p class="quote">Somos lo que hacemos... y lo que hacemos retumba en la eternidad.</p>
+    </div>
+    <div class="hero-right">
+      <img src="assets/principal.jpg" alt="Luis Ariel" class="hero-photo">
+    </div>
+  </section>
+
+  <section class="panel-grid">
+    <article class="panel">
+      <h3>Mi Historia</h3>
+      <p>Fuiste una persona que siempre estaba para todos, que le ponías amor a cada cosa de la vida y que querías disfrutarla con intensidad. Jamás te dabas por vencido. Buen padre, fiel a tus sentimientos, a tu libertad y a tu forma de ser. Gran amigo, compañero de charlas y alguien que dejó huella en quienes te conocieron.</p>
+    </article>
+
+    <article class="panel">
+      <h3>Galería de Fotos</h3>
+      <div class="thumb-grid">
+        <button class="thumb" data-src="assets/gallery_1.jpg" aria-label="Abrir foto 1"><img src="assets/gallery_1.jpg" alt="Foto 1"></button>
+<button class="thumb" data-src="assets/gallery_2.jpg" aria-label="Abrir foto 2"><img src="assets/gallery_2.jpg" alt="Foto 2"></button>
+<button class="thumb" data-src="assets/gallery_3.jpg" aria-label="Abrir foto 3"><img src="assets/gallery_3.jpg" alt="Foto 3"></button>
+      </div>
+      <div class="center">
+        <button class="btn-primary" id="openGalleryBtn">Ver Fotos</button>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h3>Video Homenaje</h3>
+      <button class="video-box" id="openSlideshowBtn" aria-label="Abrir homenaje">
+        <span class="video-pill">▶ Reproducir homenaje</span>
+      </button>
+    </article>
+
+    <article class="panel">
+      <h3>Mensajes de Mis Seres Queridos</h3>
+      <div id="messagesList" class="messages-list"></div>
+    </article>
+  </section>
+
+  <section class="tribute-row">
+    <article class="panel tribute-panel">
+      <div class="candle-side">
+        <div class="candle-wrap">
+          <div class="candle-shadow"></div>
+          <div class="candle-body"></div>
+          <div class="candle-top"></div>
+          <div class="candle-wick"></div>
+          <div class="candle-glow" id="candleGlow" hidden></div>
+          <div class="candle-flame" id="candleFlame" hidden></div>
+        </div>
+      </div>
+
+      <div class="action-side">
+        <button class="btn-primary" id="lightCandleBtn">Encender vela</button>
+        <button class="btn-secondary" id="openMessageBtn">Dejar un mensaje</button>
+        <div class="candle-count"><span id="candleCount">31</span> velas encendidas</div>
+      </div>
+    </article>
+
+    <article class="panel qr-panel">
+      <div class="qr-box">
+        <img id="qrImage" alt="QR del memorial">
+      </div>
+      <button class="btn-secondary" id="downloadQrBtn">Descargar QR</button>
+    </article>
+  </section>
+
+  <footer class="footer">Con cariño, realizado por <strong>Recuérdame</strong></footer>
+</main>
+
+<div class="modal" id="galleryModal" hidden>
+  <div class="backdrop" data-close="galleryModal"></div>
+  <div class="modal-card large">
+    <button class="close-btn" data-close="galleryModal">×</button>
+    <h3>Galería completa</h3>
+    <div class="gallery-grid gallery-scroll">
+      <button class="gallery-open" data-src="assets/gallery_1.jpg" aria-label="Abrir foto"><img src="assets/gallery_1.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_2.jpg" aria-label="Abrir foto"><img src="assets/gallery_2.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_3.jpg" aria-label="Abrir foto"><img src="assets/gallery_3.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_4.jpg" aria-label="Abrir foto"><img src="assets/gallery_4.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_5.jpg" aria-label="Abrir foto"><img src="assets/gallery_5.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_6.jpg" aria-label="Abrir foto"><img src="assets/gallery_6.jpg" alt="Galería"></button>
+<button class="gallery-open" data-src="assets/gallery_7.jpg" aria-label="Abrir foto"><img src="assets/gallery_7.jpg" alt="Galería"></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="viewerModal" hidden>
+  <div class="backdrop" data-close="viewerModal"></div>
+  <div class="viewer-card">
+    <button class="close-btn" data-close="viewerModal">×</button>
+    <img id="viewerImage" alt="Foto ampliada" class="zoomable-image">
+  </div>
+</div>
+
+<div class="modal" id="slideshowModal" hidden>
+  <div class="backdrop" data-close="slideshowModal"></div>
+  <div class="modal-card slide-card">
+    <button class="close-btn" data-close="slideshowModal">×</button>
+    <div class="slideshow-stage">
+      <img src="assets/gallery_1.jpg" class="slide-img" alt="Recuerdo"><img src="assets/gallery_2.jpg" class="slide-img" alt="Recuerdo"><img src="assets/gallery_3.jpg" class="slide-img" alt="Recuerdo"><img src="assets/gallery_4.jpg" class="slide-img" alt="Recuerdo"><img src="assets/gallery_5.jpg" class="slide-img" alt="Recuerdo"><img src="assets/gallery_6.jpg" class="slide-img" alt="Recuerdo">
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="messageModal" hidden>
+  <div class="backdrop" data-close="messageModal"></div>
+  <div class="modal-card">
+    <button class="close-btn" data-close="messageModal">×</button>
+    <h3>Dejar un mensaje</h3>
+    <form id="messageForm" class="message-form">
+      <input type="text" id="msgName" placeholder="Tu nombre" required>
+      <textarea id="msgText" rows="5" placeholder="Escribí tu mensaje" required></textarea>
+      <button class="btn-primary" type="submit">Publicar mensaje</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const initialMessages = [{'name': 'Mamá', 'text': 'Te amo hijo, te veré en la eternidad ❤️'}, {'name': 'Cristian', 'text': 'Hasta que nos volvamos a ver, hermano.'}, {'name': 'Uma', 'text': 'Siempre estarás a mi lado ❤️'}];
+const messageKey = 'memorial-luis-ariel-messages-v4';
+const candleKey = 'memorial-luis-ariel-candles-v4';
+const candleLitKey = 'memorial-luis-ariel-lit-session-v1';
+
+function getMessages() {
+  const saved = localStorage.getItem(messageKey);
+  return saved ? JSON.parse(saved) : initialMessages;
+}
+
+function saveMessages(arr) {
+  localStorage.setItem(messageKey, JSON.stringify(arr));
+}
+
+function renderMessages() {
+  const box = document.getElementById('messagesList');
+  const arr = getMessages();
+  box.innerHTML = arr.map(m => `
+    <div class="message-item">
+      <div class="avatar">${m.name.trim().charAt(0).toUpperCase()}</div>
+      <div>
+        <div class="message-name">${m.name}</div>
+        <div class="message-text">${m.text}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openModal(id) {
+  document.getElementById(id).hidden = false;
+}
+
+function closeModal(id) {
+  document.getElementById(id).hidden = true;
+}
+
+document.getElementById('openGalleryBtn').onclick = () => openModal('galleryModal');
+document.getElementById('openSlideshowBtn').onclick = () => openModal('slideshowModal');
+document.getElementById('openMessageBtn').onclick = () => openModal('messageModal');
+
+document.querySelectorAll('[data-close]').forEach(el => {
+  el.onclick = () => closeModal(el.dataset.close);
+});
+
+document.querySelectorAll('.thumb, .gallery-open').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('viewerImage').src = btn.dataset.src;
+    openModal('viewerModal');
+  });
+});
+
+document.getElementById('messageForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('msgName').value.trim();
+  const text = document.getElementById('msgText').value.trim();
+  if (!name || !text) return;
+  const arr = getMessages();
+  arr.unshift({name, text});
+  saveMessages(arr);
+  renderMessages();
+  e.target.reset();
+  closeModal('messageModal');
+});
+
+function updateCandle() {
+  const count = localStorage.getItem(candleKey) || '31';
+  const lit = sessionStorage.getItem(candleLitKey) === '1';
+  document.getElementById('candleCount').textContent = count;
+  document.getElementById('candleFlame').hidden = !lit;
+  document.getElementById('candleGlow').hidden = !lit;
+  document.getElementById('lightCandleBtn').textContent = lit ? 'Vela encendida' : 'Encender vela';
+}
+
+document.getElementById('lightCandleBtn').onclick = () => {
+  const lit = sessionStorage.getItem(candleLitKey) === '1';
+  let count = Number(localStorage.getItem(candleKey) || '31');
+  if (!lit) {
+    count += 1;
+    localStorage.setItem(candleKey, String(count));
+    sessionStorage.setItem(candleLitKey, '1');
+  }
+  updateCandle();
+};
+
+function setQr() {
+  const target = window.location.href;
+  document.getElementById('qrImage').src =
+    'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(target);
+}
+
+document.getElementById('downloadQrBtn').onclick = async () => {
+  const img = document.getElementById('qrImage');
+  try {
+    const res = await fetch(img.src);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'qr-memorial-luis-ariel.png';
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    alert('Abrí el memorial publicado y mantené presionado el QR para guardarlo.');
+  }
+};
+
+renderMessages();
+updateCandle();
+setQr();
+
+const viewerImage = document.getElementById('viewerImage');
+let currentScale = 1;
+
+function applyZoom() {
+  viewerImage.style.transform = `scale(${currentScale})`;
+}
+
+viewerImage.addEventListener('click', () => {
+  currentScale = currentScale === 1 ? 1.9 : 1;
+  applyZoom();
+});
+
+viewerImage.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  currentScale += e.deltaY < 0 ? 0.12 : -0.12;
+  currentScale = Math.max(1, Math.min(3, currentScale));
+  applyZoom();
+}, { passive: false });
+
+document.querySelectorAll('.thumb, .gallery-open').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentScale = 1;
+    applyZoom();
+  });
+});
+
+</script>
+</body>
+</html>
